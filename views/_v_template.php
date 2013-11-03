@@ -24,6 +24,10 @@
 
             <a href='/users/logout'>Logout</a>
             <a href='/users/profile'>Profile</a>
+            <a href='/users/reset'>Reset password</a>
+            <a href='/posts'>Posts</a>
+            <a href='/posts/add'>Add a post</a>
+            <a href='/posts/users'>Follow or unfollow users</a>
 
         <!-- Menu options for users who are not logged in -->
         <?php else: ?>
