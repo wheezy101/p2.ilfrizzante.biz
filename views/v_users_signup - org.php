@@ -15,22 +15,6 @@
     Password<br>
     <input type='password' name='password'>
     <br><br>
-    
-    Location<br>
-    <input type='text' name='location'>
-    <br><br>
-    
-    Gender<br>
-    <input type='text' name='gender'>
-    <br><br>
-
-    Age<br>
-    <input type='int' name='age'>
-    <br><br>
-     
-    <label for='bio'>Bio</label><br>
-    <textarea name='bio' name='bio'></textarea>
-    <br><br>
 
     <input type='submit' value='Sign up'>
 

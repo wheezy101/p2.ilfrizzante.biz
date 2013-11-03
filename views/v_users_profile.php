@@ -1,15 +1,7 @@
-<h1>This is the profile of <?=$user->first_name?></h1>
 
-public function profile($user_name = NULL) {
+<h1>This is the profile of <?=$user->first_name?>.</h1>
 
-    # Create a new View instance
-    # Do *not* include .php with the view name
-    $view = View::instance('v_users_profile');
+<h3><?=$user->first_name?> is a <?=$user->age?> year old <?=$user->gender?> from <?=$user->location?>.</h3>
 
-    # Pass information to the view instance
-    $view->user_name = $user_name;
-
-    # Render View
-    echo $view;
-
-}
+<h1>About <?=$user->first_name?>:</h1>
+<h3><?=$user->bio?></h3>
