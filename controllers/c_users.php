@@ -46,17 +46,14 @@ class users_controller extends base_controller {
     }
 
     public function reset($error = NULL) {
-    
-
         # Set up the view
-        $this->template->content = View::instance("v_users_reset");
+        $this->template->content = View::instance('v_users_reset');
 
         # Pass data to the view
         $this->template->content->error = $error;
 
         # Render the view
         echo $this->template;
-
     }
 
     public function p_reset() {
@@ -71,10 +68,10 @@ class users_controller extends base_controller {
             WHERE email = '".$_POST['email']."'"; 
 
         $user_id = DB::instance(DB_NAME)->select_field($q);
-	
+
         # Email not the same - failed
         if(!$user_id) {
-            Router::redirect("/users/reset/error"); 
+            Router::redirect('/users/reset/error'); 
      
         # Email passed
         } else {
@@ -99,7 +96,7 @@ class users_controller extends base_controller {
     public function login($error = NULL) {
 
         # Set up the view
-        $this->template->content = View::instance("v_users_login");
+        $this->template->content = View::instance('v_users_login');
 
         # Pass data to the view
         $this->template->content->error = $error;
@@ -128,29 +125,17 @@ class users_controller extends base_controller {
 
         # Login failed
         if(!$token) {
-            # Note the addition of the parameter "error"
+        # Note the addition of the parameter "error"
             Router::redirect("/users/login/error"); 
-
-        # Login passed
-        } else {
-
-            /* 
-            Store this token in a cookie using setcookie()
-            Important Note: *Nothing* else can echo to the page before setcookie is called
-            Not even one single white space.
-            param 1 = name of the cookie
-            param 2 = the value of the cookie
-            param 3 = when to expire
-            param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
-            */
-            setcookie("token", $token, strtotime('+1 year'), '/');
-
-            # Send them to the main page - or whever you want them to go
-            Router::redirect("/");
-
         }
-
+        
+        # Login passed
+        else {
+            setcookie("token", $token, strtotime('+2 weeks'), '/');
+            Router::redirect("/");
     }
+}
+
     
     public function logout() {
 
@@ -168,7 +153,7 @@ class users_controller extends base_controller {
         setcookie("token", "", strtotime('-1 year'), '/');
 
         # Send them back to the main index.
-        Router::redirect("/");
+        Router::redirect('/');
 
     }
     

@@ -23,7 +23,7 @@ class index_controller extends base_controller {
 	
 		# CSS/JS includes
 			/*
-			$client_files_head = Array("");
+			$client_files_head = Array("");u
 	    	$this->template->client_files_head = Utils::load_client_files($client_files);
 	    	
 	    	$client_files_body = Array("");

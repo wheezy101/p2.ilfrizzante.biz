@@ -1,7 +1,7 @@
+
 <header><h1>TWEEDLE(DUM)(DEE)</h1></header>
 
 <article>
-
 	<h2>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?></h2>
 	<br>
 	<ul>	
