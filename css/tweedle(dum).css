@@ -1,6 +1,68 @@
 @charset "utf-8";
 /* CSS Document */
 
-body {background-color:#330000;}
-h2 {text-align:center; color:#FFFFFF;}
-p {text-align:center; color:#FFFFFF;}
+body {
+	background: url(tweedle2.jpg);
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 80%;
+}
+
+header {
+	color: #FFF;
+	margin: 0;
+	padding: 0 0 0 2em;
+	background: #95CAE4;
+	height: 50px;
+	border: 5px #FFF;
+	border-radius: 2em;
+	}
+
+h1, h3 {
+	color: #FFF;
+	text-align: center;
+}
+
+h2 {
+	color:red;
+	text-align:center; 
+}
+
+
+form, article {
+	background: #95CAE4;
+}
+
+p {
+	text-align: center;
+}
+
+a:link {
+	color: #FFF;
+}
+
+a:visited {
+	color: #FF0000
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	display: inline;
+	padding: 2em 2em 2em 2em;
+	background: #0000CC;
+	height: 120px;
+	border: 5px #FFF;
+	border-radius: 2em;
+        text-align:center; 
+}
+
+nav a:link, nav a:visited {
+	background-color: red;
+	color: #FFF;
+	text-decoration: none;
+}
+
+nav a:hover {
+	background-color: #FFF;
+	color: #0000CC;
+}

@@ -36,13 +36,18 @@ class users_controller extends base_controller {
         # Insert this user into the database 
         $user_id = DB::instance(DB_NAME)->insert("users", $_POST);
 
-        # For now, just confirm they've signed up - 
-        # You should eventually make a proper View for this
-        echo 'You\'re signed up';
+        # Confirm they've signed up - 
+        # Setup view
+        $this->template->content = View::instance('v_users_confirm_signup');
+
+        # Render template
+        echo $this->template;
+
     }
 
     public function reset($error = NULL) {
     
+
         # Set up the view
         $this->template->content = View::instance("v_users_reset");
 
@@ -81,8 +86,12 @@ class users_controller extends base_controller {
         # Update database with new password
         DB::instance(DB_NAME)->update("users", Array("password" => $new_password), "WHERE user_id = ".$user_id);
                 
-        # Send them to the main page - or whever you want them to go
-        echo 'You changed your password!';
+        # Confirm they've signed up - 
+        # Setup view
+        $this->template->content = View::instance('v_users_confirm_reset');
+
+        # Render template
+        echo $this->template;
 
         }
     }
