@@ -30,7 +30,7 @@
 # Match requested uri to any routes and instantiate controller
     Router::init();
     
-# Display environment details
+# Display environment details here
 	require CORE_PATH."environment-details.php";
 	
 ?>
