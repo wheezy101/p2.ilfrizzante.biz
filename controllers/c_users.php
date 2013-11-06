@@ -2,27 +2,55 @@
 class users_controller extends base_controller {
 
     public function __construct() {
+        
         parent::__construct();
-        echo "users_controller construct called<br><br>";
+        #echo "users_controller construct called<br><br>";
+    
     } 
 
     public function index() {
+    
         echo "This is the index page";
+    
     }
 
-    public function signup() {
-
+    public function signup($error = NULL) {
+    
         # Setup view
         $this->template->content = View::instance('v_users_signup');
         $this->template->title   = "Sign Up";
 
+        # Pass data to the view
+        $this->template->content->error = $error;
+
         # Render template
         echo $this->template;
-
+    
     }
 
-    public function p_signup() {
-
+    public function p_signup() {                   
+    
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        
+        # Search the db for this email and password
+        # Retrieve the token if it's available
+        $q = "SELECT token 
+            FROM users 
+            WHERE email = '".$_POST['email']."'";
+            
+        $token = DB::instance(DB_NAME)->select_field($q);
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $first_name=$_POST['first_name'];
+        $last_name=$_POST['last_name'];
+        
+        # Email address already in use or key fields are blank- fail
+        if($token || (empty($email) || empty($password) || empty($first_name) || empty($last_name))){
+            Router::redirect("/users/signup/error"); 
+        }
+        
+        # Email address ok - pass
+        else {
         # More data we want stored with the user
         $_POST['created']  = Time::now();
         $_POST['modified'] = Time::now();
@@ -42,10 +70,12 @@ class users_controller extends base_controller {
 
         # Render template
         echo $this->template;
-
+        
+        }
     }
 
     public function reset($error = NULL) {
+        
         # Set up the view
         $this->template->content = View::instance('v_users_reset');
 
@@ -54,6 +84,7 @@ class users_controller extends base_controller {
 
         # Render the view
         echo $this->template;
+        
     }
 
     public function p_reset() {
@@ -72,18 +103,18 @@ class users_controller extends base_controller {
         # Email not the same - failed
         if(!$user_id) {
             Router::redirect('/users/reset/error'); 
-     
-        # Email passed
-        } else {
-
+        }  
         
+        # Email passed
+         else {
+            
         # Encrypt the password  
         $new_password = sha1(PASSWORD_SALT.$_POST['new_password']);            
 
         # Update database with new password
         DB::instance(DB_NAME)->update("users", Array("password" => $new_password), "WHERE user_id = ".$user_id);
                 
-        # Confirm they've signed up - 
+        # Confirm they've reset the password - 
         # Setup view
         $this->template->content = View::instance('v_users_confirm_reset');
 
@@ -107,24 +138,24 @@ class users_controller extends base_controller {
     }
     
     public function p_login() {
-
+        
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
-
+        
         # Hash submitted password so we can compare it against one in the db
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-
+        
         # Search the db for this email and password
         # Retrieve the token if it's available
         $q = "SELECT token 
             FROM users 
             WHERE email = '".$_POST['email']."' 
             AND password = '".$_POST['password']."'";
-
         $token = DB::instance(DB_NAME)->select_field($q);
-
+        
         # Login failed
         if(!$token) {
+        
         # Note the addition of the parameter "error"
             Router::redirect("/users/login/error"); 
         }
@@ -135,7 +166,6 @@ class users_controller extends base_controller {
             Router::redirect("/");
     }
 }
-
     
     public function logout() {
 

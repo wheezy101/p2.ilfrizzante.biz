@@ -31,10 +31,20 @@
     <label for='bio'>Bio</label><br>
     <textarea name='bio' name='bio'></textarea>
     <br><br>
+            <?php if(isset($error)): ?>
+        <div class='error'>
+            Signup failed. Please try again with a new email address.
+            Also make sure first name, last name, email, and password fields are not blank.
+        </div>
+        <br>
+    <?php endif; ?>
 
     <input type='submit' value='Sign up'>
 
+
 </form>
+
+    
 
 
 

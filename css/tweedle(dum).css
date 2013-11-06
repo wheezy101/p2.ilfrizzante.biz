@@ -4,7 +4,7 @@
 body {
 	background: url(tweedle2.jpg);
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 80%;
+	font-size: 95%;
 }
 
 header {
@@ -17,14 +17,14 @@ header {
 	border-radius: 2em;
 	}
 
-h1, h3 {
-	color: #FFF;
+h1, h2 {
+	color: red;
 	text-align: center;
 }
 
-h2 {
-	color:red;
-	text-align:center; 
+h3 {
+	color: #FFF;
+	text-align: center;
 }
 
 
@@ -53,7 +53,8 @@ nav ul {
 	height: 120px;
 	border: 5px #FFF;
 	border-radius: 2em;
-        text-align:center; 
+        text-align:center;
+	font-size: x-large;
 }
 
 nav a:link, nav a:visited {

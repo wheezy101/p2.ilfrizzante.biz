@@ -1,5 +1,5 @@
 
-<header><h1>TWEEDLE(DUM)(DEE)</h1></header>
+<h1>TWEEDLE(DUM)(DEE)</h1>
 
 <article>
 	<h2>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?></h2>
